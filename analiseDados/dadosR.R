@@ -2,11 +2,8 @@
 library(jsonlite)
 
 
-
-
 summary(dfProduto$semana0)
-#dfFornecedor$precoFonecedor0 = dfFornecedor$precoFonecedor0/100
-dfSemana0<-data.frame("Produto"=dfProduto$semana0, "Preco"=round(dfFornecedor$precoFonecedor0))
+dfSemana0<-data.frame("Produto"=dfProduto$semana0, "Preco"=dfFornecedor$precoFonecedor0)
 
 #==============================Gráficos================================================= 
 hist(dfSemana0$Produto,  col="#abf5bf",main="Produtos vendidos", ylab = "Frequência", xlab = "Quantidade")
@@ -21,3 +18,19 @@ json_data <- toJSON(dfSemana0)
 caminho<-"~/Downloads/RGrupo/Web-crawler/analiseDados/teste.json"
 write_json(json_data, path=caminho)
 
+
+
+
+#============================Conexão COM O BANCO DE DADOS=====================================
+# #Conecte-se ao banco de dados MySQL
+# con <- dbConnect(drv = MariaDB(),
+#                  user = "aluno",
+#                  password = "sptech",
+#                  host = "localhost",
+#                  dbname = "dadosDia")
+# 
+# # Carregue o dadosDia no banco de dados
+# dbWriteTable(con, "dadosDia", dadosDia, overwrite = TRUE)
+# 
+# # Desconecte-se do banco de dados MySQL
+# dbDisconnect(con)
