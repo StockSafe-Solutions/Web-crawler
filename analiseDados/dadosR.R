@@ -35,16 +35,52 @@ retas <- ggplot(mapping = aes(amostraProduto,amostraPreco)) +
    geom_smooth(se = FALSE, method = "lm") +
    geom_hline(yintercept = mean(amostraPreco))
 
+retasPre <- ggplot(mapping = aes(amostraProduto,amostraPreco)) +
+  geom_point() +
+  geom_smooth( method = "lm") +
+  geom_hline(yintercept = mean(amostraPreco))
+
+tabelaLegenda<- tribble(
+  ~Cor, ~Explicação,
+  "Ciano", "Representa a tendência dos dados",
+  "Vermelho", "Representa a média dos dados",
+  "Azul", "Representa os pontos de dados",
+  "Vermelho bordo", "Representa uma linha",
+)
+
 regressao<-retas +
-  ggtitle("Gráfico de dispersão da quantidade de Produto vendidos e os preços") +
+  #ggtitle("Gráfico de dispersão da quantidade de Produto vendidos e os preços") +
+  labs(
+    title = "Gráfico de dispersão da quantidade de Produto vendidos e os preços",
+    subtitle = "Primeira semana"
+  )+
   xlab("Quantidade de vendas") +
   ylab("Valores") +
   geom_segment(aes(x = amostraProduto, y = amostraPreco,
                    xend = amostraProduto, yend = mean(amostraPreco)), color="black", size=.9) +
   geom_point(color="#a31621", size=2) +
   geom_smooth(se = FALSE, method = "lm", color="#57C4E5", size=1) +
-  geom_hline(yintercept = mean(amostraPreco), color="#ECA087", size=.9)+
+  geom_hline(yintercept = mean(amostraPreco), color="red", size=.9)+
   theme_bw()
+
+
+regressaoPrev<-retas +
+  #ggtitle("Gráfico de dispersão da quantidade de Produto vendidos e os preços") +
+  labs(
+    title = "Gráfico de dispersão da quantidade de Produto vendidos e os preços",
+    subtitle = "Primeira semana"
+  )+
+  xlab("Quantidade de vendas") +
+  ylab("Valores") +
+  geom_segment(aes(x = amostraProduto, y = amostraPreco,
+                   xend = amostraProduto, yend = mean(predict(coeficiente))), color="black", size=.9) +
+  geom_point(color="#a31621", size=2) +
+  geom_smooth(se = FALSE, method = "lm", color="#57C4E5", size=1) +
+  geom_hline(yintercept = mean(amostraPreco), color="red", size=.9)+
+  theme_bw()
+
+
+
 #----Analise----
 predict(amostraProduto)
 
