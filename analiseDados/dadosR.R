@@ -162,10 +162,10 @@ regressaoPrevUltima
 
 #----Analise----
 resulta0<-predict(coeficiente)
-hist(resulta0)
+hist(resulta0, xlab = "Valores", ylab = "Frequência", main = "Previsões da primeira semana", col = "#89B6A5")
 
 resultadoUltimo<-predict(coeficienteUltimo)
-hist(resultadoUltimo)
+hist(resultadoUltimo, xlab = "Valores", ylab = "Frequência", main = "Previsões da última semana", col = "#C9EDDC")
 
 #regressao + regressaoUltima + plot_layout(nrow = 2)
 
@@ -176,7 +176,7 @@ dados<-data.frame(dfSemana0, dfUltima)
 json_data <- toJSON(dados)
 
 # Crie uma variável com o caminho
-caminho <- "C:\\Users\\Stephany\\Desktop\\Somente-pastas\\Julia\\faculdade\\pi\\b3\\Web-crawler\\analiseDados\\json\\dados.json"
+caminho <- "~/Downloads/Web-crawler/analiseDados/dados.json"
 
 #Escreve o arquivi json
 write_json(json_data, path=caminho)
